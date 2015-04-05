@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic) int countdown_time;
+@property (weak, nonatomic) IBOutlet UILabel *TimeLabel;
+@property (weak, nonatomic) NSTimer *tm;
 
 @end
-
