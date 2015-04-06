@@ -8,42 +8,47 @@
 
 #import "ViewController.h"
 
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
-
+@synthesize start_button;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
-    _countdown_time = 60;
-    [_TimeLabel setText:[NSString stringWithFormat:@"%.0d", _countdown_time]];
-    
-    _tm = [NSTimer scheduledTimerWithTimeInterval:1
-                                         target:self
-                                         selector:@selector(update_char)
-                                         userInfo:nil
-                                         repeats:YES];
-    [_tm fire];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
--(void) update_char{
-    
-    if (_countdown_time <= 0.0) {
-        [_tm invalidate];
+- (void)update
+{
+    if (time <= 0.0) {
+        [_countdown_timer invalidate];
+        start_button.hidden = NO;
     }
-    [_TimeLabel setText:[NSString stringWithFormat:@"%.0d", _countdown_time]];
-    _countdown_time -=1;
-    
+    else {
+        time--;
+        // countLabelの値を更新
+        [_countLabel setText:[NSString stringWithFormat: @"%d", time]];
+        
+    }
 }
+
+-(IBAction)bottonPushed{
+    _countdown_timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                        target:self
+                                                      selector:@selector(update)
+                                                      userInfo:nil
+                                                       repeats:YES];
+    time = 10;
+    [_countdown_timer fire];
+    start_button.hidden=YES;
+};
+
 
 @end

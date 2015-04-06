@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+{
+    int time;
+}
 
-@property (nonatomic) int countdown_time;
-@property (weak, nonatomic) IBOutlet UILabel *TimeLabel;
-@property (weak, nonatomic) NSTimer *tm;
+@property (nonatomic, strong) NSTimer *countdown_timer;
+@property (weak, nonatomic) IBOutlet UIButton *start_button;
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
 @end
